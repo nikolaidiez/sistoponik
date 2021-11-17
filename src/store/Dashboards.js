@@ -69,9 +69,21 @@ const dashboards = {
           if (tgl > tglacuan) {
             const entri = {}
             entri.tanggal = Object.keys(groupbyTgl)[i]
-            entri.pagi = (Object.values(groupbyTgl)[i][3][part]).toFixed(2)
-            entri.siang = (Object.values(groupbyTgl)[i][6][part]).toFixed(2)
-            entri.sore = (Object.values(groupbyTgl)[i][8][part]).toFixed(2)
+            try {
+              entri.pagi = (Object.values(groupbyTgl)[i][3][part]).toFixed(2)
+            } catch {
+              entri.pagi = parseFloat('0.00').toFixed(2)
+            }
+            try {
+              entri.siang = (Object.values(groupbyTgl)[i][6][part]).toFixed(2)
+            } catch {
+              entri.siang = parseFloat('0.00').toFixed(2)
+            }
+            try {
+              entri.sore = (Object.values(groupbyTgl)[i][8][part]).toFixed(2)
+            } catch {
+              entri.sore = parseFloat('0.00').toFixed(2)
+            }
             groupforTabel.push(entri)
             // grafik
             datalb.push(entri.tanggal)
